@@ -1,0 +1,18 @@
+configure node project so we can write npm test
+
+say success or failure (with report)
+
+On laptop, we have our project.
+
+We push it to github.  Which only hosts code - doesn't have testing service.
+
+We connect circleCI to github as a service.
+
+CircleCI lets us say "You can / can't merge changes"
+
+npm install --save-dev jest
+
+make a file called filename.test.js
+export functions from file to test
+import file into test file
+
