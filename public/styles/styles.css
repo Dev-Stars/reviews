@@ -1,0 +1,32 @@
+.ReviewSectionHeading {
+  color: red;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.ReviewLocationName {
+  font-size: 0.8em;
+  color: black;
+}
+
+.input-group {
+  width: 280px;
+  height: 25px;
+}
+
+#reviewSearchButton {
+  color: white;
+}
+
+.input-group-addon {
+  background-color: red;
+}
+
+hr {
+  background-color: grey;
+  width: 220px;
+  height: 1px;
+  border-top: .5px grey
+}
+
+
