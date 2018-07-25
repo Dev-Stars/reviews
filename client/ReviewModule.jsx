@@ -3,7 +3,6 @@ import $ from 'jquery';
 import TopBar from './TopBar.jsx';
 import Reviews from './Reviews.jsx';
 
-
 export default class ReviewModule extends React.Component {
   constructor() {
     super();
@@ -11,7 +10,6 @@ export default class ReviewModule extends React.Component {
       searchText: '',
       redVote: [],
       greyVote: [1, 2, 3, 4, 5],
-      voted: false,
       reviews: [
         {
           locname: 'Intial',
@@ -45,7 +43,7 @@ export default class ReviewModule extends React.Component {
       url: `/locations/${restaurantID}/reviews`,
       contentType: 'application/json',
       success: (response) => {
-        this.handleStateChanges({ reviews: response });
+        this.setState({ reviews: response });
         this.avgStars(response);
       },
     });
@@ -57,16 +55,13 @@ export default class ReviewModule extends React.Component {
   }
 
   handleMouseLeave() {
-    this.handleStateChanges({
+    this.setState({
       redVote: [],
       greyVote: [1, 2, 3, 4, 5],
     });
   }
 
   handleStarHover(e) {
-    console.log(e);
-    console.log(typeof e.target);
-    const { redVote, greyVote } = this.state;
     e.preventDefault();
     const starNum = parseInt(e.target.id, 10);
     const redArray = [];
@@ -77,12 +72,7 @@ export default class ReviewModule extends React.Component {
     for (let idx = starNum + 1; idx <= 5; idx += 1) {
       greyArray.push(idx);
     }
-    const voteState = { redVote: redArray, greyVote: greyArray };
-    this.handleStateChanges(voteState);
-  }
-
-  handleStateChanges(stateChange) {
-    this.setState(stateChange);
+    this.setState({ redVote: redArray, greyVote: greyArray });
   }
 
   avgStars(reviewsArray) {
@@ -90,10 +80,10 @@ export default class ReviewModule extends React.Component {
     if (reviewsArray.length > 0) {
       sum = reviewsArray.reduce((acc, curr) => (acc + curr.stars), 0);
       const avg = sum / reviewsArray.length;
-      this.handleStateChanges({ avgStars: avg });
+      this.setState({ avgStars: avg });
       return avg;
     }
-    this.handleStateChanges({ avgStars: 0 });
+    this.setState({ avgStars: 0 });
     return 0;
   }
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { FormGroup, InputGroup, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
@@ -10,7 +9,6 @@ const Wrapper = styled.section`
   max-height: 200px;
   padding-top: 0px;
   padding-left: 20px;
-
 `;
 
 const Title = styled.h2`
@@ -60,11 +58,10 @@ const EmptyRatingBar = styled.div`
 
 const RatingBarRightSide = styled.span`
   background-color: #F0F0F0;
-
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const EmptyUserInfo = styled.span`
@@ -87,7 +84,7 @@ const StarsBar = styled.span`
 const BlankPhoto = styled.img`
   height: 60px;
   width: 150px;
-  `;
+`;
 
 const StartReview = styled.a`
   padding-bottom: 3px;
@@ -99,18 +96,11 @@ export default class TopBar extends React.Component {
   constructor() {
     super();
     this.state = {
-      searchString: '',
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick(e) {
     e.preventDefault();
-  }
-
-  handleChange(e) {
-    e.preventDefault();
-    this.setState({ searchString: e.target.id });
   }
 
   render() {
@@ -123,14 +113,13 @@ export default class TopBar extends React.Component {
       starVote,
       handleMouseLeave,
     } = this.props;
-
     return (
       <div>
         <Wrapper>
           <Title>
             Recommended Reviews
             <span className="ReviewLocationName">
-              { ' for ' }
+              { ` for ` }
               { name }
             </span>
           </Title>
@@ -140,31 +129,33 @@ export default class TopBar extends React.Component {
               className="searchBox"
               type="text"
               onChange={handleTextChange}
-              searchString={searchText}
+              value={searchText}
+
             />
             <SearchButton
               type="submit"
               onClick={this.handleClick}
               id="reviewSearchButton"
+              onSubmit={this.handleClick}
             >
               {<i className="fas fa-search fa-2x" />}
             </SearchButton>
             <span className="dropDown">
               <DropDown>
                 <option value="Yelp">
-                Yelp Sort
+                  Yelp Sort
                 </option>
                 <option value="Newest">
-                Newest First
+                  Newest First
                 </option>
                 <option value="Oldest">
-                Oldest First
+                  Oldest First
                 </option>
                 <option value="Highest">
-                Highest Rated
+                  Highest Rated
                 </option>
                 <option value="Lowest">
-                Lowest Rated
+                  Lowest Rated
                 </option>
               </DropDown>
             </span>
@@ -213,8 +204,7 @@ export default class TopBar extends React.Component {
               <hr></hr>
               <div>
                 <StartReview href="./nopage.html">
-                Start your review of
-                  {name}
+                  { `Start your review of ${name}` }
                 </StartReview>
               </div>
             </RatingBarRightSide>

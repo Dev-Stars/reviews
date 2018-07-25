@@ -29,4 +29,13 @@ hr {
   border-top: .5px grey
 }
 
+a {
+  text-decoration: none;
+}
 
+a:hover{
+  text-decoration: underline;
+}
+.UserInfo {
+  height: 300px;
+}

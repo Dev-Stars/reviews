@@ -8,10 +8,10 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack -d --watch",
     "start": "nodemon ./server/server.js",
-    "testing": "jest --watch *.jsx"
+    "testing": "jest --watch *.jsx --coverage"
   },
   "dependencies": {
     "axios": "^0.18.0",

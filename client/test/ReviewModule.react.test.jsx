@@ -26,33 +26,21 @@ describe('ReviewModule testing suite', () => {
     });
 
     it('should store the number of stars sent from TopBar to state', (done) => {
-      wrapper.instance().handleStateChanges = jest.fn();
       wrapper.instance().handleStarHover({ target: { id: '2' }, preventDefault: () => {} });
       done();
-      expect(wrapper.instance().handleStateChanges).toBeCalledWith(
-        { redVote: [1, 2], greyVote: [3, 4, 5] },
-      );
+      wrapper.update();
+      expect(wrapper.state('redVote')).toEqual([1, 2]);
+      expect(wrapper.state('greyVote')).toEqual([3, 4, 5]);
     });
 
     it('should call handleStateChanges with all grey stars when the mouse leaves the stars field', (done) => {
-      wrapper.instance().handleStateChanges = jest.fn();
       wrapper.instance().handleMouseLeave();
       done();
-      expect(wrapper.instance().handleStateChanges).toBeCalledWith(
-        { redVote: [], greyVote: [1, 2, 3, 4, 5] },
-      );
-    });
-
-    it('should update state appropriately using handleStateChanges', (done) => {
-      wrapper.instance().handleStateChanges({ testing: 'State was updated' });
-      wrapper.instance().handleStateChanges({ aNumberToTest: 5 });
-      done();
-      expect(wrapper.state('testing')).toEqual('State was updated');
-      expect(wrapper.state('aNumberToTest')).toEqual(5);
+      expect(wrapper.state('redVote')).toEqual([]);
+      expect(wrapper.state('greyVote')).toEqual([1, 2, 3, 4, 5]);
     });
 
     it('should average the number of stars and call handleStateChanges with the mean', (done) => {
-      wrapper.instance().handleStateChanges = jest.fn();
       wrapper.instance().avgStars(
         [
           {
@@ -82,7 +70,7 @@ describe('ReviewModule testing suite', () => {
         ],
       );
       done();
-      expect(wrapper.instance().handleStateChanges).toBeCalledWith({ avgStars: 4 });
+      expect(wrapper.state('avgStars')).toEqual(4);
     });
   });
 });
