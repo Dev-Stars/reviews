@@ -48,6 +48,7 @@
     "jest-enzyme": "^6.0.2",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.4.1",
+    "supertest": "^3.1.0",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.1.0"
   }

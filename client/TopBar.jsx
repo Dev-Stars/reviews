@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -31,6 +33,7 @@ const SearchButton = styled.button`
   padding-left: 0px;
   margin: 0px;
   background-color: red;
+  color: white;
 `;
 
 const SearchOptions = styled.form`
@@ -90,7 +93,16 @@ const StartReview = styled.a`
   padding-bottom: 3px;
   margin-bottom: 3px;
   padding-top: 1px;
-`;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  `;
+
+const ReviewLocation = styled.span`
+  font-size: 0.8em;
+  color: black;
+  `;
 
 export default class TopBar extends React.Component {
   constructor() {
@@ -118,10 +130,10 @@ export default class TopBar extends React.Component {
         <Wrapper>
           <Title>
             Recommended Reviews
-            <span className="ReviewLocationName">
+            <ReviewLocation className="ReviewLocationName">
               { ` for ` }
               { name }
-            </span>
+            </ReviewLocation>
           </Title>
 
           <SearchOptions>
@@ -169,7 +181,7 @@ export default class TopBar extends React.Component {
           </SearchOptions>
           <EmptyRatingBar>
             <EmptyUserInfo>
-              <BlankPhoto src="./photos/empty.png" alt="user's icon" />
+              <BlankPhoto src="https://s3-us-west-1.amazonaws.com/yelpclonereviews/photos/empty.png" alt="user's icon" />
             </EmptyUserInfo>
 
             <RatingBarRightSide>
@@ -203,7 +215,7 @@ export default class TopBar extends React.Component {
               </StarsBar>
               <hr></hr>
               <div>
-                <StartReview href="./nopage.html">
+                <StartReview href="./linkTest.html">
                   { `Start your review of ${name}` }
                 </StartReview>
               </div>

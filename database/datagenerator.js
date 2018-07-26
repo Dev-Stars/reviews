@@ -113,7 +113,11 @@ const paras = ['Lorem ipsum dolor amet fanny pack thundercats church-key glossie
   'Hella vexillologist pok pok yr meh distillery jean shorts. Freegan tattooed iceland lo-fi, thundercats schlitz poutine messenger bag kogi shoreditch. Tumblr ugh helvetica vexillologist, polaroid vegan pork belly next level banh mi chia cornhole jean shorts la croix skateboard. Prism you probably haven\'t heard of them migas blue bottle adaptogen shoreditch af. Kickstarter sustainable yr chicharrones poke lumbersexual helvetica vaporware. Asymmetrical gluten-free biodiesel, roof party skateboard cronut tote bag adaptogen distillery typewriter listicle church-key.',
 ];
 
-const imgURLS = ['./photos/p1.jpg', './photos/p2.jpg', './photos/p3.jpg', './photos/p4.jpg', './photos/p5.jpg'];
+const imgURLS = ['https://s3-us-west-1.amazonaws.com/yelpclonereviews/photos/p1.jpg',
+  'https://s3-us-west-1.amazonaws.com/yelpclonereviews/photos/p2.jpg',
+  'https://s3-us-west-1.amazonaws.com/yelpclonereviews/photos/p3.jpg',
+  'https://s3-us-west-1.amazonaws.com/yelpclonereviews/photos/p4.jpg',
+  'https://s3-us-west-1.amazonaws.com/yelpclonereviews/photos/p5.jpg'];
 const names = ['Opie Taylor', 'Aunt Bee', 'Floyd Lawson', 'Andy Taylor', 'Gomer Pyle', 'Barney Fife', 'Goober Pyle', 'Otis Campbell', 'Ellie', 'Thelma Lou'];
 const dates = ['2008-7-04', '2010-12-31', '2018-4-20', '2017-9-08', '2018-12-25'];
 const users = function makeUsers(namesArray) {
@@ -139,15 +143,18 @@ const makeLocs = function generateLocations(restaurants) {
 const reviews = function generateReviews(reviewers, restaurants, paragraphs) {
   restaurants.forEach((resto, locIdx) => (
     reviewers.forEach((reviewer, userIdx) => {
-      const date = dates[Math.floor(Math.random() * 5)];
-      const userID = userIdx + 1;
-      const stars = Math.ceil(Math.random() * 5);
-      const paragraph = paragraphs[Math.floor(Math.random() * 5)];
-      db.query('INSERT INTO reviews (message, stars, posted, userID, locID) VALUES (?, ?, ?, ?, ?)', [paragraph, stars, date, userID, locIdx + 1], (err) => {
-        if (err) {
-          throw err;
-        }
-      });
+      const randomNum = Math.random();
+      if (randomNum > 0.4) {
+        const date = dates[Math.floor(Math.random() * 5)];
+        const userID = userIdx + 1;
+        const stars = Math.ceil(Math.random() * 5);
+        const paragraph = paragraphs[Math.floor(Math.random() * 5)];
+        db.query('INSERT INTO reviews (message, stars, posted, userID, locID) VALUES (?, ?, ?, ?, ?)', [paragraph, stars, date, userID, locIdx + 1], (err) => {
+          if (err) {
+            throw err;
+          }
+        });
+      }
     })
   ));
 };
