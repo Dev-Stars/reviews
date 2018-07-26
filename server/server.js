@@ -8,16 +8,10 @@ const port = process.env.PORT || 3004;
 
 app.use(bodyParser.json());
 
-app.use('/', (req, res, next) => {
-  console.log(req.body);
-  next();
-});
-
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/locations/:locID/reviews', (req, res) => {
   const { locID } = req.params;
-  console.log('You are asking for info on location #: ', req.params.locID);
   db.getById(locID, (err, results) => {
     if (err) {
       res.send(err);
@@ -30,3 +24,7 @@ app.get('/locations/:locID/reviews', (req, res) => {
 app.listen(port, () => {
   console.log(`server running at: http://localhost:${port}`);
 });
+
+module.exports = {
+  app,
+};

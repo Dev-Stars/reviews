@@ -29,6 +29,23 @@ const UserBottom = styled.div`
   margin-bottom: 0px;
 `;
 
+const NameLink = styled.a`
+  text-decoration: none;
+  font-size: 1em;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const UserTidbit = styled.div`
+
+  font-size: 0.8em;
+  &.locationName {
+    font-weight: bold;
+  }
+  align-items: top;
+`;
+
 export default class UserInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -62,20 +79,31 @@ export default class UserInfo extends React.Component {
             <UserPhotos src={photoloc} alt="user's icon" />
           </span>
           <span>
-            <div>
+            <NameLink href="linktest.html">
               { name }
-            </div>
-            <div>
+            </NameLink>
+            <UserTidbit className="locationName">
               { userloc }
-            </div>
-            <div>
-              { `${numfriends} `}
-               friends
-            </div>
-            <div>
-              { `${numreviews} `}
-              reviews
-            </div>
+            </UserTidbit>
+            <UserTidbit>
+              <span>
+                <img src="https://s3-us-west-1.amazonaws.com/yelpclonereviews/photos/friends.png" alt="friend icon" style={{ marginTop: '2px' }} />
+              </span>
+              <span style={{ position: 'relative', top: '-2px' }}>
+
+                { ` ${numfriends} `}
+                 friends
+                 </span>
+            </UserTidbit>
+            <UserTidbit>
+              <span>
+                <img src="https://s3-us-west-1.amazonaws.com/yelpclonereviews/photos/reviews.png" alt="friend icon" />
+              </span>
+              <span style={{ position: 'relative', top: '-5px' }}>
+                { ` ${numreviews} `}
+                reviews
+              </span>
+            </UserTidbit>
           </span>
         </UserTop>
         <UserBottom

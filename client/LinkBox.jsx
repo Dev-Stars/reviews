@@ -10,6 +10,14 @@ const Box = styled.div`
   background-color: white;
 `;
 
+const PopupLink = styled.a`
+  text-decoration: none;
+  font-size: 1em;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export default function LinkBox(props) {
   const { name } = props;
   const linkString = `Follow ${name}`;
@@ -17,21 +25,21 @@ export default function LinkBox(props) {
 
   return (
     <Box className="LinkBox">
-      <a href={linkAddress}>
+      <PopupLink href={linkAddress}>
         Share review
-      </a>
-      <a href={linkAddress}>
+      </PopupLink>
+      <PopupLink href={linkAddress}>
         Embed review
-      </a>
-      <a href={linkAddress}>
+      </PopupLink>
+      <PopupLink href={linkAddress}>
         Compliment
-      </a>
-      <a href={linkAddress}>
+      </PopupLink>
+      <PopupLink href={linkAddress}>
         Send message
-      </a>
-      <a className="personalized" href={linkAddress}>
+      </PopupLink>
+      <PopupLink className="personalized" href={linkAddress}>
         {linkString}
-      </a>
+      </PopupLink>
     </Box>
   );
 }

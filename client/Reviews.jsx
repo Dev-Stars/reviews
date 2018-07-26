@@ -5,7 +5,12 @@ import UserInfo from './UserInfo.jsx';
 import TextBox from './TextBox.jsx';
 
 const Break = styled.hr`
-  width: 600px;
+  width: 500px;
+  background-color: grey;
+  height: 1px;
+  border-top: .5px grey
+  margin-bottom: 15px;
+  margin-top: 0px;
 `;
 
 const Wrapper = styled.section`
@@ -21,6 +26,7 @@ const UserWrapper = styled.span`
   width: 250px;
   padding-top: 0px;
   height: 300px;
+  margin-bottom:0px;
 `;
 
 const TextWrapper = styled.span`
